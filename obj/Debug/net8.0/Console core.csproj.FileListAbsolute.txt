@@ -1,0 +1,31 @@
+C:\Users\User\source\repos\Console core\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\User\source\repos\Console core\bin\Debug\net8.0\appsettings.json
+C:\Users\User\source\repos\Console core\bin\Debug\net8.0\Console core.staticwebassets.runtime.json
+C:\Users\User\source\repos\Console core\bin\Debug\net8.0\Console core.exe
+C:\Users\User\source\repos\Console core\bin\Debug\net8.0\Console core.deps.json
+C:\Users\User\source\repos\Console core\bin\Debug\net8.0\Console core.runtimeconfig.json
+C:\Users\User\source\repos\Console core\bin\Debug\net8.0\Console core.dll
+C:\Users\User\source\repos\Console core\bin\Debug\net8.0\Console core.pdb
+C:\Users\User\source\repos\Console core\obj\Debug\net8.0\Console core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\source\repos\Console core\obj\Debug\net8.0\Console core.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\Console core\obj\Debug\net8.0\Console core.AssemblyInfo.cs
+C:\Users\User\source\repos\Console core\obj\Debug\net8.0\Console core.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\Console core\obj\Debug\net8.0\Console core.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\User\source\repos\Console core\obj\Debug\net8.0\Console core.RazorAssemblyInfo.cache
+C:\Users\User\source\repos\Console core\obj\Debug\net8.0\Console core.RazorAssemblyInfo.cs
+C:\Users\User\source\repos\Console core\obj\Debug\net8.0\Console core.sourcelink.json
+C:\Users\User\source\repos\Console core\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\User\source\repos\Console core\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\User\source\repos\Console core\obj\Debug\net8.0\staticwebassets\msbuild.Console core.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\User\source\repos\Console core\obj\Debug\net8.0\staticwebassets\msbuild.build.Console core.props
+C:\Users\User\source\repos\Console core\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Console core.props
+C:\Users\User\source\repos\Console core\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Console core.props
+C:\Users\User\source\repos\Console core\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\User\source\repos\Console core\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\User\source\repos\Console core\obj\Debug\net8.0\scopedcss\bundle\Console core.styles.css
+C:\Users\User\source\repos\Console core\obj\Debug\net8.0\scopedcss\projectbundle\Console core.bundle.scp.css
+C:\Users\User\source\repos\Console core\obj\Debug\net8.0\Console core.dll
+C:\Users\User\source\repos\Console core\obj\Debug\net8.0\refint\Console core.dll
+C:\Users\User\source\repos\Console core\obj\Debug\net8.0\Console core.pdb
+C:\Users\User\source\repos\Console core\obj\Debug\net8.0\Console core.genruntimeconfig.cache
+C:\Users\User\source\repos\Console core\obj\Debug\net8.0\ref\Console core.dll
