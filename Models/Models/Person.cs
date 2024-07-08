@@ -1,4 +1,5 @@
-﻿namespace Console_core.Models.Models
+﻿using System;
+namespace Console_core.Models.Models
 {
         public class Person
         {

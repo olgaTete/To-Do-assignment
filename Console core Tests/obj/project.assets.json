@@ -5532,11 +5532,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\source\\repos\\Console core\\PersonTests\\Console core Tests.csproj",
+      "projectUniqueName": "C:\\Users\\User\\source\\repos\\Console core\\Console core Tests\\Console core Tests.csproj",
       "projectName": "Console core Tests",
-      "projectPath": "C:\\Users\\User\\source\\repos\\Console core\\PersonTests\\Console core Tests.csproj",
+      "projectPath": "C:\\Users\\User\\source\\repos\\Console core\\Console core Tests\\Console core Tests.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\source\\repos\\Console core\\PersonTests\\obj\\",
+      "outputPath": "C:\\Users\\User\\source\\repos\\Console core\\Console core Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",

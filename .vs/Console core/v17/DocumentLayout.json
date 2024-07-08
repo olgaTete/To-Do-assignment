@@ -1,16 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\User\\source\\repos\\Console core\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{04C692F0-2222-4A36-85A2-2E3C092D633B}|Console core.csproj|c:\\users\\user\\source\\repos\\console core\\models\\models\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{04C692F0-2222-4A36-85A2-2E3C092D633B}|Console core.csproj|solutionrelative:models\\models\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B39104B6-4A6C-44F1-8F8C-7E0B25CE41DA}|PersonTests\\Console core Tests.csproj|c:\\users\\user\\source\\repos\\console core\\persontests\\persontests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B39104B6-4A6C-44F1-8F8C-7E0B25CE41DA}|PersonTests\\Console core Tests.csproj|solutionrelative:persontests\\persontests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -18,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -27,32 +18,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PersonTests.cs",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Console core\\PersonTests\\PersonTests.cs",
-              "RelativeDocumentMoniker": "PersonTests\\PersonTests.cs",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\Console core\\PersonTests\\PersonTests.cs",
-              "RelativeToolTip": "PersonTests\\PersonTests.cs",
-              "ViewState": "AQIAABoAAAAAAAAAAAAgwC8AAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-08T12:53:35.863Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Person.cs",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Console core\\Models\\Models\\Person.cs",
-              "RelativeDocumentMoniker": "Models\\Models\\Person.cs",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\Console core\\Models\\Models\\Person.cs",
-              "RelativeToolTip": "Models\\Models\\Person.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAC4AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-08T12:31:57.123Z",
-              "EditorCaption": ""
             }
           ]
         }
