@@ -37,5 +37,22 @@ namespace Console_core.Date
         {
             todoItems = new Todo[0];
         }
+         // Add New methods point 10 
+         public Todo[] FindByDoneStatus(bool doneStatus)
+         {
+         return todoItems.Where(todo => todo.Done == doneStatus).ToArray();
+         }
+         public Todo[] FindByAssignee(int personId)
+         {
+         return todoItems.Where(todo => todo.Assignee != null && todo.Assignee.Id == personId).ToArray();
+         }
+         public Todo[] FindByAssignee(Person assignee)
+         {
+         return todoItems.Where(todo => todo.Assignee == assignee).ToArray();
+         }
+         public Todo[] FindUnassignedTodoItems()
+         {
+         return todoItems.Where(todo => todo.Assignee == null).ToArray();
+         }
     }
 }
