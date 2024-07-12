@@ -87,6 +87,24 @@ namespace Console_core_Tests
             // Assert
             Assert.Equal(0, size);
         }
+        [Fact]
+        public void RemoveTodoItem_ShouldRemoveTodoFromArray()
+        {
+            // Arrange
+            TodoService todoService = new TodoService();
+            todoService.Clear();
+            Person assignee = new Person(PersonSequencer.NextPersonId(), "John", "Doe");
+            Todo todo1 = todoService.CreateTodoItem("Task 1", false, assignee);
+            Todo todo2 = todoService.CreateTodoItem("Task 2", true, assignee);
+
+            // Act
+            todoService.RemoveTodoItem(todo1.Id);
+            Todo[] remainingTodos = todoService.FindAll();
+
+            // Assert
+            Assert.DoesNotContain(todo1, remainingTodos);
+            Assert.Contains(todo2, remainingTodos);
+        }
 
         [Fact]
         public void FindByDoneStatus_ShouldReturnTodosWithMatchingStatus()
