@@ -84,6 +84,8 @@ namespace Console_core_Tests
             // Assert
             Assert.Equal(0, size);
         }
+
+        [Fact]
         public void RemovePerson_ShouldRemovePersonFromArray()
         {
             // Arrange
