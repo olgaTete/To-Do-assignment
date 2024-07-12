@@ -37,6 +37,14 @@ namespace Console_core.Date
         {
             todoItems = new Todo[0];
         }
+        public void RemoveTodoItem(int todoId)
+        {
+            int index = Array.FindIndex(todoItems, todo => todo.Id == todoId);
+            if (index != -1)
+            {
+                todoItems = todoItems.Where((source, i) => i != index).ToArray();
+            }
+        }
          // Add New methods point 10 
          public Todo[] FindByDoneStatus(bool doneStatus)
          {
