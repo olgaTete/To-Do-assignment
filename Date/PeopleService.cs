@@ -33,5 +33,13 @@ namespace Console_core.Date
         {
             people = new Person[0];
         }
+        public void RemovePerson(int personId)
+        {
+            int index = Array.FindIndex(people, person => person.Id == personId);
+            if (index != -1)
+            {
+                people = people.Where((source, i) => i != index).ToArray();
+            }
+        }
     }
 }
