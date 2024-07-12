@@ -84,5 +84,21 @@ namespace Console_core_Tests
             // Assert
             Assert.Equal(0, size);
         }
+        public void RemovePerson_ShouldRemovePersonFromArray()
+        {
+            // Arrange
+            PeopleService peopleService = new PeopleService();
+            peopleService.Clear();
+            Person person1 = peopleService.CreatePerson("John", "Doe");
+            Person person2 = peopleService.CreatePerson("Jane", "Doe");
+
+            // Act
+            peopleService.RemovePerson(person1.Id);
+            Person[] remainingPeople = peopleService.FindAll();
+
+            // Assert
+            Assert.DoesNotContain(person1, remainingPeople);
+            Assert.Contains(person2, remainingPeople);
+        }
     }
 }
