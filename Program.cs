@@ -1,3 +1,6 @@
+using Console_core.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace Console_core
 {
     public class Program
@@ -8,6 +11,10 @@ namespace Console_core
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            
+            builder.Services.AddDbContext<ExDbContext>(options
+                => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
+                new MySqlServerVersion(new Version(8, 0, 34))));
 
             var app = builder.Build();
 

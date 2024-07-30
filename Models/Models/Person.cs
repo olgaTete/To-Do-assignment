@@ -1,13 +1,17 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 namespace Console_core.Models.Models
 {
         public class Person
         {
-            private readonly int _id;
-            private string _firstName;
-            private string _lastName;
+        [Key]
+        public int _id { get; private set;}
+        public string _firstName { get; private set;}
+        public string _lastName { get; private set;}
 
-            public Person(int id, string firstName, string lastName)
+        public Person() { }
+
+        public Person(int id, string firstName, string lastName)
             {
                 _id = id;
                 FirstName = firstName;

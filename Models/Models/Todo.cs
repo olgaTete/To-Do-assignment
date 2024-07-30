@@ -1,13 +1,15 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 namespace Console_core.Models.Models
 {
     public class Todo
     {
-        private readonly int _id;
-        private string _description;
-        private bool _done;
-        private Person _assignee;
-
+        [Key]
+        public int _id { get; private set; }
+        public string _description { get; private set; }
+        public bool _done { get; private set; }
+        public Person _assignee { get; private set; }
+        public Todo() { }
         public Todo(int id, string description)
         {
             _id = id;
@@ -18,7 +20,7 @@ namespace Console_core.Models.Models
 
         public int Id
         {
-            get { return _id; }
+            get { return Id; }
         }
 
         public string Description
