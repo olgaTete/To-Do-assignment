@@ -62,5 +62,15 @@ namespace Console_core.Date
          {
          return todoItems.Where(todo => todo.Assignee == null).ToArray();
          }
+
+       /* internal void CreateTodoItem(string description, bool done, Todo assignee)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal object FindById(object assigneeId)
+        {
+            throw new NotImplementedException();
+        }*/
     }
 }

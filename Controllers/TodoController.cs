@@ -9,31 +9,42 @@ namespace Console_core.Controllers
         private readonly TodoService _todoService;
         
         private readonly PeopleService _peopleService;
+        private int assigneeId;
+
         // Assuming you have a PersonService to manage Person entities
 
         public TodoController(TodoService todoService,PeopleService peopleService)
         {
             _todoService = new TodoService();
-            _peopleService = peopleService;
+            _peopleService = new PeopleService();
         }
         public IActionResult Index()
         {
             var todos = _todoService.FindAll();
             return View(todos);
         }
+        [HttpGet]
         public IActionResult Create()
         {
-            var todos = _todoService.FindAll();
+            var people = _peopleService.FindAll();
+            ViewBag.People = people;
             return View();
         }
 
         [HttpPost]
-        public IActionResult CreateTodoItem(string description, bool done, Person assignee)
-        {
+    public IActionResult CreateTodoItem(string description, bool done, int assigneeId)
+    {
+            var assignee = _peopleService.FindById(assigneeId);
+             if (assignee == null)
+             {
+                 ModelState.AddModelError("", "Invalid assignee.");
+                 var people = _peopleService.FindAll();
+                 ViewBag.People = people;
+                 return View();
+             }
 
-            _todoService.CreateTodoItem(description,done,assignee);
-            return RedirectToAction(nameof(Index));
-
+             _todoService.CreateTodoItem(description, done, assignee);
+             return RedirectToAction(nameof(Index));
         }
         public IActionResult Details(int id)
         {

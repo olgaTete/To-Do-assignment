@@ -1,0 +1,40 @@
+﻿@using Console_core.Models.Models
+@model IEnumerable<Todo>
+
+@{
+    ViewBag.Title = "Todo List";
+}
+
+<h1>Todo List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Description</th>
+            <th>Done</th>
+            <th>Assignee</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var todo in Model)
+        {
+            <tr>
+                <td>@todo.Id</td>
+                <td>@todo.Description</td>
+                <td>@todo.Done</td>
+                <td>@todo.Assignee.FirstName @todo.Assignee.LastName</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@todo.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@todo.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</div>
+

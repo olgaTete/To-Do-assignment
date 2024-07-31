@@ -1,4 +1,5 @@
 using Console_core.Models;
+using Console_core.Date;
 using Microsoft.EntityFrameworkCore;
 
 namespace Console_core
@@ -15,7 +16,10 @@ namespace Console_core
             builder.Services.AddDbContext<ExDbContext>(options
                 => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
                 new MySqlServerVersion(new Version(8, 0, 34))));
-
+            
+            builder.Services.AddSingleton<PeopleService>();
+            builder.Services.AddSingleton<TodoService>();
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
