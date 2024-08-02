@@ -13,11 +13,14 @@
         <input asp-for="Description" class="form-control" />
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <label asp-for="Done"></label>
-        <input asp-for="Done" class="form-control" />
-        <span asp-validation-for="Done" class="text-danger"></span>
-    </div>
+   <div class="form-group">
+    <label asp-for="Done"></label>
+    <select asp-for="Done" class="form-control">
+        <option value="true">Done</option>
+        <option value="false">Not Done</option>
+    </select>
+    <span asp-validation-for="Done" class="text-danger"></span>
+</div>
     <div class="form-group">
         <label for="AssigneeId">Assignee</label>
         <select id="AssigneeId" name="assigneeId" class="form-control">
