@@ -20,7 +20,7 @@ namespace Console_core.Models.Models
 
         public int Id
         {
-            get { return _Id; }
+            get { return _id; }
         }
 
         public string Description
