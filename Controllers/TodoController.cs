@@ -32,7 +32,7 @@ namespace Console_core.Controllers
         }
 
         [HttpPost]
-    public IActionResult CreateTodoItem(string description, bool done, int assigneeId)
+    public IActionResult Create(string description, bool done, int assigneeId)
     {
             var assignee = _peopleService.FindById(assigneeId);
              if (assignee == null)
