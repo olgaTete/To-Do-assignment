@@ -7,6 +7,75 @@
 
 <h1>Todo List</h1>
 
+<div class="col-md-4">
+    <form asp-action="ByDoneStatus" method="get" class="form-inline">
+        <label for="doneStatus">Show tasks:</label>
+        <select id="doneStatus" name="doneStatus" class="form-control">
+            <option value="true">Done</option>
+            <option value="false">Not Done</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Filter</button>
+    </form>
+</div>
+
+<div class="col-md-4">
+    <form asp-action="ByAssignee" method="get">
+        <div class="form-group">
+            <label for="assigneeId">Filter by Assignee</label>
+            <select id="assigneeId" name="assigneeId" class="form-control">
+                <option value="">Select Assignee</option>
+                @if (ViewBag.People != null)
+                {
+                    foreach (var person in ViewBag.People as IEnumerable<SelectListItem>)
+                    {
+                        <option value="@person.Value">@person.Text</option>
+                    }
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Filter</button>
+    </form>
+</div>
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Description</th>
+            <th>Done</th>
+            <th>Assignee</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var todo in Model)
+        {
+            <tr>
+                <td>@todo.Id</td>
+                <td>@todo.Description</td>
+                <td>@todo.Done</td>
+                <td>@todo.Assignee.FirstName @todo.Assignee.LastName</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@todo.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@todo.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@todo.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</div>
+
+@* 
+@{
+    ViewBag.Title = "Todo List";
+}
+
+<h1>Todo List</h1>
+
 <table class="table">
     <thead>
         <tr>
@@ -26,6 +95,7 @@
                 <td>@todo.Done</td>
                 <td>@todo.Assignee.FirstName @todo.Assignee.LastName</td>
                 <td>
+                    <a asp-action="Edit" asp-route-id="@todo.Id">Edit</a> |
                     <a asp-action="Details" asp-route-id="@todo.Id">Details</a> |
                     <a asp-action="Delete" asp-route-id="@todo.Id">Delete</a>
                 </td>
@@ -37,4 +107,4 @@
 <div>
     <a asp-action="Create" class="btn btn-primary">Create New</a>
 </div>
-
+ *@
