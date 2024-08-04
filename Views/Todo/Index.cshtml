@@ -53,7 +53,7 @@
             <tr>
                 <td>@todo.Id</td>
                 <td>@todo.Description</td>
-                <td>@todo.Done</td>
+                <td>@(todo.Done ? "Done" : "Not Done")</td>
                 <td>@todo.Assignee.FirstName @todo.Assignee.LastName</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@todo.Id">Edit</a> |
