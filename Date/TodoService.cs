@@ -33,6 +33,16 @@ namespace Console_core.Date
             return newTodo;
         }
 
+        public void UpdateTodoItem(int id, string description, bool done, Person assignee)
+        {
+            var todo = FindById(id);
+            if (todo != null)
+            {
+                todo.Description = description;
+                todo.Done = done;
+                todo.Assignee = assignee;
+            }
+        }
         public void Clear()
         {
             todoItems = new Todo[0];
@@ -62,15 +72,5 @@ namespace Console_core.Date
          {
          return todoItems.Where(todo => todo.Assignee == null).ToArray();
          }
-
-       /* internal void CreateTodoItem(string description, bool done, Todo assignee)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal object FindById(object assigneeId)
-        {
-            throw new NotImplementedException();
-        }*/
     }
 }
