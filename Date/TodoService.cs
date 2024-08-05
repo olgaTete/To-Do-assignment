@@ -33,20 +33,22 @@ namespace Console_core.Date
             return newTodo;
         }
 
-        public void UpdateTodoItem(int id, string description, bool done, Person assignee)
+        public void UpdateTodoItem(Todo updatedTodo)
         {
-            var todo = FindById(id);
-            if (todo != null)
+            var existingTodo = todoItems.FirstOrDefault(todo => todo.Id == updatedTodo.Id);
+            if (existingTodo != null)
             {
-                todo.Description = description;
-                todo.Done = done;
-                todo.Assignee = assignee;
+                existingTodo.Description = updatedTodo.Description;
+                existingTodo.Done = updatedTodo.Done;
+                existingTodo.Assignee = updatedTodo.Assignee;
             }
         }
+
         public void Clear()
         {
             todoItems = new Todo[0];
         }
+
         public void RemoveTodoItem(int todoId)
         {
             int index = Array.FindIndex(todoItems, todo => todo.Id == todoId);
@@ -55,22 +57,23 @@ namespace Console_core.Date
                 todoItems = todoItems.Where((source, i) => i != index).ToArray();
             }
         }
-         // Add New methods point 10 
-         public Todo[] FindByDoneStatus(bool doneStatus)
-         {
-         return todoItems.Where(todo => todo.Done == doneStatus).ToArray();
-         }
-         public Todo[] FindByAssignee(int personId)
-         {
-         return todoItems.Where(todo => todo.Assignee != null && todo.Assignee.Id == personId).ToArray();
-         }
-         public Todo[] FindByAssignee(Person assignee)
-         {
-         return todoItems.Where(todo => todo.Assignee == assignee).ToArray();
-         }
-         public Todo[] FindUnassignedTodoItems()
-         {
-         return todoItems.Where(todo => todo.Assignee == null).ToArray();
-         }
+  
+    // Add New methods point 10 
+    public Todo[] FindByDoneStatus(bool doneStatus)
+    {
+    return todoItems.Where(todo => todo.Done == doneStatus).ToArray();
+    }
+    public Todo[] FindByAssignee(int personId)
+    {
+    return todoItems.Where(todo => todo.Assignee != null && todo.Assignee.Id == personId).ToArray();
+     }
+    public Todo[] FindByAssignee(Person assignee)
+    {
+    return todoItems.Where(todo => todo.Assignee == assignee).ToArray();
+    }
+    public Todo[] FindUnassignedTodoItems()
+    {
+    return todoItems.Where(todo => todo.Assignee == null).ToArray();
+    }
     }
 }
