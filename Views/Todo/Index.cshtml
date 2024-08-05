@@ -1,11 +1,8 @@
 ﻿@using Console_core.Models.Models
 @model IEnumerable<Todo>
 
-@{
-    ViewBag.Title = "Todo List";
-}
 
-<h1>Todo List</h1>
+<h2>Todo List</h2>
 
 <div class="col-md-4">
     <form asp-action="ByDoneStatus" method="get" class="form-inline">
@@ -24,11 +21,12 @@
             <label for="assigneeId">Filter by Assignee</label>
             <select id="assigneeId" name="assigneeId" class="form-control">
                 <option value="">Select Assignee</option>
+              
                 @if (ViewBag.People != null)
                 {
-                    foreach (var person in ViewBag.People as IEnumerable<SelectListItem>)
+                    @foreach (var person in ViewBag.People)
                     {
-                        <option value="@person.Value">@person.Text</option>
+                        <option value="@person.Id">@person.FirstName @person.LastName</option>
                     }
                 }
             </select>
@@ -40,71 +38,26 @@
 <table class="table mt-3">
     <thead>
         <tr>
-            <th>ID</th>
             <th>Description</th>
             <th>Done</th>
             <th>Assignee</th>
-            <th></th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var todo in Model)
+        @foreach (var item in Model)
         {
             <tr>
-                <td>@todo.Id</td>
-                <td>@todo.Description</td>
-                <td>@(todo.Done ? "Done" : "Not Done")</td>
-                <td>@todo.Assignee.FirstName @todo.Assignee.LastName</td>
+                <td>@item.Description</td>
+                <td>@(item.Done ? "Done" : "Not Done")</td>
+                <td>@item.Assignee.FirstName @item.Assignee.LastName</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@todo.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@todo.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@todo.Id">Delete</a>
+                    <a href="/Todo/Details/@item.Id">Details</a> |
+                    <a href="/Todo/Edit/@item.Id">Edit</a> |
+                    <a href="/Todo/Delete/@item.Id">Delete</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-
-<div>
-    <a asp-action="Create" class="btn btn-primary">Create New</a>
-</div>
-
-@* 
-@{
-    ViewBag.Title = "Todo List";
-}
-
-<h1>Todo List</h1>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Description</th>
-            <th>Done</th>
-            <th>Assignee</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var todo in Model)
-        {
-            <tr>
-                <td>@todo.Id</td>
-                <td>@todo.Description</td>
-                <td>@todo.Done</td>
-                <td>@todo.Assignee.FirstName @todo.Assignee.LastName</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@todo.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@todo.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@todo.Id">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
-<div>
-    <a asp-action="Create" class="btn btn-primary">Create New</a>
-</div>
- *@
+<a href="/Todo/Create">Create New</a>
