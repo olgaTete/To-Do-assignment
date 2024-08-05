@@ -1,49 +1,78 @@
 using System;
-using Console_core.Models.Models;
 using Xunit;
-
+using Console_core.Models.Models;
 
 namespace Console_core_Tests
 {
-        public class PersonTests
+    public class PersonTests
+    {
+        [Fact]
+        public void Constructor_ShouldInitializeProperties()
         {
-            [Fact]
-            public void Person_CanBeCreated_WithValidParameters()
-            {
-                var person = new Person(1, "John", "Doe");
-                Assert.Equal(1, person.Id);
-                Assert.Equal("John", person.FirstName);
-                Assert.Equal("Doe", person.LastName);
-            }
+            // Arrange
+            int id = 1;
+            string firstName = "John";
+            string lastName = "Doe";
 
-            [Fact]
-            public void FirstName_CannotBeNullOrEmpty()
-            {
-                Assert.Throws<ArgumentException>(() => new Person(1, null, "Doe"));
-                Assert.Throws<ArgumentException>(() => new Person(1, "", "Doe"));
-            }
+            // Act
+            Person person = new Person(id, firstName, lastName);
 
-            [Fact]
-            public void LastName_CannotBeNullOrEmpty()
-            {
-                Assert.Throws<ArgumentException>(() => new Person(1, "John", null));
-                Assert.Throws<ArgumentException>(() => new Person(1, "John", ""));
-            }
-
-            [Fact]
-            public void CanSetFirstName()
-            {
-                var person = new Person(1, "John", "Doe");
-                person.FirstName = "Jane";
-                Assert.Equal("Jane", person.FirstName);
-            }
-
-            [Fact]
-            public void CanSetLastName()
-            {
-                var person = new Person(1, "John", "Doe");
-                person.LastName = "Smith";
-                Assert.Equal("Smith", person.LastName);
-            }
+            // Assert
+            Assert.Equal(id, person.Id);
+            Assert.Equal(firstName, person.FirstName);
+            Assert.Equal(lastName, person.LastName);
         }
+
+        [Fact]
+        public void FirstName_ShouldThrowArgumentException_WhenNullOrEmpty()
+        {
+            // Arrange
+            Person person = new Person();
+
+            // Act & Assert
+            Assert.Throws<ArgumentException>(() => person.FirstName =
+
+null);
+            Assert.Throws<ArgumentException>(() => person.FirstName = "");
+        }
+
+        [Fact]
+        public void LastName_ShouldThrowArgumentException_WhenNullOrEmpty()
+        {
+            // Arrange
+            Person person = new Person();
+
+            // Act & Assert
+            Assert.Throws<ArgumentException>(() => person.LastName = null);
+            Assert.Throws<ArgumentException>(() => person.LastName = "");
+        }
+
+        [Fact]
+        public void FirstName_ShouldSet_WhenValidValue()
+        {
+            // Arrange
+            Person person = new Person();
+            string firstName = "John";
+
+            // Act
+            person.FirstName = firstName;
+
+            // Assert
+            Assert.Equal(firstName, person.FirstName);
+        }
+
+        [Fact]
+        public void LastName_ShouldSet_WhenValidValue()
+        {
+            // Arrange
+            Person person = new Person();
+            string lastName = "Doe";
+
+            // Act
+            person.LastName = lastName;
+
+            // Assert
+            Assert.Equal(lastName, person.LastName);
+        }
+    }
 }

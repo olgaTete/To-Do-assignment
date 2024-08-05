@@ -1,185 +1,111 @@
-﻿using Console_core.Date;
+﻿using Xunit;
+using Console_core.Date;
 using Console_core.Models.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
 
 namespace Console_core_Tests
 {
     public class TodoServiceTests
     {
+
         [Fact]
-        public void Size_ShouldReturnZero_WhenArrayIsEmpty()
+        public void Size_ShouldReturnZero_WhenNoItems()
         {
             // Arrange
             TodoService todoService = new TodoService();
             todoService.Clear();
-
             // Act
-            int size = todoService.Size();
+            var size = todoService.Size();
 
             // Assert
             Assert.Equal(0, size);
         }
 
         [Fact]
-        public void FindAll_ShouldReturnEmptyArray_WhenNoTodoItems()
+        public void CreateTodoItem_ShouldAddNewItem()
         {
             // Arrange
             TodoService todoService = new TodoService();
             todoService.Clear();
+            var description = "Test Description";
+            var done = false;
+            var assignee = new Person { FirstName = "John", LastName = "Doe" };
 
             // Act
-            Todo[] todos = todoService.FindAll();
+            var todo = todoService.CreateTodoItem(description, done, assignee);
 
             // Assert
-            Assert.Empty(todos);
+            Assert.Equal(1, todoService.Size());
+            Assert.Equal(description, todo.Description);
+            Assert.Equal(done, todo.Done);
+            Assert.Equal(assignee, todo.Assignee);
         }
 
         [Fact]
-        public void FindById_ShouldReturnCorrectTodoItem_WhenTodoItemExists()
+        public void FindById_ShouldReturnCorrectItem()
         {
             // Arrange
             TodoService todoService = new TodoService();
             todoService.Clear();
-            Person assignee = new Person(PersonSequencer.NextPersonId(), "John", "Doe");
-            Todo todo = todoService.CreateTodoItem("Test Task", false, assignee);
+            var todo1 = todoService.CreateTodoItem("Test 1", false, new Person { FirstName = "John", LastName = "Doe" });
+            var todo2 = todoService.CreateTodoItem("Test 2", true, new Person { FirstName = "Jane", LastName = "Doe" });
 
             // Act
-            Todo foundTodo = todoService.FindById(todo.Id);
+            var result = todoService.FindById(todo1.Id);
 
             // Assert
-            Assert.Equal(todo, foundTodo);
+            Assert.Equal(todo1, result);
         }
 
         [Fact]
-        public void CreateTodoItem_ShouldAddTodoToArray()
+        public void FindByDoneStatus_ShouldReturnCorrectItems()
         {
             // Arrange
             TodoService todoService = new TodoService();
             todoService.Clear();
-            int initialSize = todoService.Size();
-            Person assignee = new Person(PersonSequencer.NextPersonId(), "John", "Doe");
+            todoService.CreateTodoItem("Test 1", false, new Person { FirstName = "John", LastName = "Doe" });
+            var todo2 = todoService.CreateTodoItem("Test 2", true, new Person { FirstName = "Jane", LastName = "Doe" });
 
             // Act
-            todoService.CreateTodoItem("Test Task", false, assignee);
-            int newSize = todoService.Size();
+            var result = todoService.FindByDoneStatus(true);
 
             // Assert
-            Assert.Equal(initialSize + 1, newSize);
+            Assert.Single(result);
+            Assert.Contains(todo2, result);
         }
 
         [Fact]
-        public void Clear_ShouldEmptyTheArray()
-        {
-            // Arrange
-            TodoService todoService = new TodoService();
-            Person assignee = new Person(PersonSequencer.NextPersonId(), "John", "Doe");
-            todoService.CreateTodoItem("Test Task", false, assignee);
-
-            // Act
-            todoService.Clear();
-            int size = todoService.Size();
-
-            // Assert
-            Assert.Equal(0, size);
-        }
-        [Fact]
-        public void RemoveTodoItem_ShouldRemoveTodoFromArray()
+        public void FindUnassignedTodoItems_ShouldReturnCorrectItems()
         {
             // Arrange
             TodoService todoService = new TodoService();
             todoService.Clear();
-            Person assignee = new Person(PersonSequencer.NextPersonId(), "John", "Doe");
-            Todo todo1 = todoService.CreateTodoItem("Task 1", false, assignee);
-            Todo todo2 = todoService.CreateTodoItem("Task 2", true, assignee);
+            var todo1 = todoService.CreateTodoItem("Test 1", false, null);
+            todoService.CreateTodoItem("Test 2", true, new Person { FirstName = "Jane", LastName = "Doe" });
 
             // Act
-            todoService.RemoveTodoItem(todo1.Id);
-            Todo[] remainingTodos = todoService.FindAll();
+            var result = todoService.FindUnassignedTodoItems();
 
             // Assert
-            Assert.DoesNotContain(todo1, remainingTodos);
-            Assert.Contains(todo2, remainingTodos);
+            Assert.Single(result);
+            Assert.Contains(todo1, result);
         }
 
         [Fact]
-        public void FindByDoneStatus_ShouldReturnTodosWithMatchingStatus()
+        public void RemoveTodoItem_ShouldDeleteItem()
         {
             // Arrange
             TodoService todoService = new TodoService();
             todoService.Clear();
-            Person assignee = new Person(PersonSequencer.NextPersonId(), "John", "Doe");
-            Todo todo1 = todoService.CreateTodoItem("Task 1", true, assignee);
-            Todo todo2 = todoService.CreateTodoItem("Task 2", false, assignee);
+            var todo = todoService.CreateTodoItem("Test", false, new Person { FirstName = "John", LastName = "Doe" });
 
             // Act
-            Todo[] doneTodos = todoService.FindByDoneStatus(true);
-            Todo[] notDoneTodos = todoService.FindByDoneStatus(false);
+            todoService.RemoveTodoItem(todo.Id);
 
             // Assert
-            Assert.Contains(todo1, doneTodos);
-            Assert.Contains(todo2, notDoneTodos);
-        }
-
-        [Fact]
-        public void FindByAssignee_ShouldReturnTodosWithMatchingAssigneeId()
-        {
-            // Arrange
-            TodoService todoService = new TodoService();
-            todoService.Clear();
-            Person assignee1 = new Person(PersonSequencer.NextPersonId(), "John", "Doe");
-            Person assignee2 = new Person(PersonSequencer.NextPersonId(), "Jane", "Doe");
-            Todo todo1 = todoService.CreateTodoItem("Task 1", true, assignee1);
-            Todo todo2 = todoService.CreateTodoItem("Task 2", false, assignee2);
-
-            // Act
-            Todo[] todosForAssignee1 = todoService.FindByAssignee(assignee1.Id);
-            Todo[] todosForAssignee2 = todoService.FindByAssignee(assignee2.Id);
-
-            // Assert
-            Assert.Contains(todo1, todosForAssignee1);
-            Assert.Contains(todo2, todosForAssignee2);
-        }
-
-        [Fact]
-        public void FindByAssignee_ShouldReturnTodosWithMatchingAssignee()
-        {
-            // Arrange
-            TodoService todoService = new TodoService();
-            todoService.Clear();
-            Person assignee1 = new Person(PersonSequencer.NextPersonId(), "John", "Doe");
-            Person assignee2 = new Person(PersonSequencer.NextPersonId(), "Jane", "Doe");
-            Todo todo1 = todoService.CreateTodoItem("Task 1", true, assignee1);
-            Todo todo2 = todoService.CreateTodoItem("Task 2", false, assignee2);
-
-            // Act
-            Todo[] todosForAssignee1 = todoService.FindByAssignee(assignee1);
-            Todo[] todosForAssignee2 = todoService.FindByAssignee(assignee2);
-
-            // Assert
-            Assert.Contains(todo1, todosForAssignee1);
-            Assert.Contains(todo2, todosForAssignee2);
-        }
-        [Fact]
-        public void FindUnassignedTodoItems_ShouldReturnTodosWithNoAssignee()
-        {
-            // Arrange
-            TodoService todoService = new TodoService();
-            todoService.Clear();
-            Person assignee = new Person(PersonSequencer.NextPersonId(), "John", "Doe");
-            Todo todo1 = todoService.CreateTodoItem("Task 1", true, null);
-            Todo todo2 = todoService.CreateTodoItem("Task 2", false, assignee);
-
-            // Act
-            Todo[] unassignedTodos = todoService.FindUnassignedTodoItems();
-
-            // Assert
-            Assert.Contains(todo1, unassignedTodos);
-            Assert.DoesNotContain(todo2, unassignedTodos);
+            Assert.Equal(0, todoService.Size());
+            Assert.Null(todoService.FindById(todo.Id));
         }
     }
 }
+

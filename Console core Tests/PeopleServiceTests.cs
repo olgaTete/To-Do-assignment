@@ -1,10 +1,6 @@
 ﻿using Console_core.Date;
 using Console_core.Models.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Console_core_Tests
